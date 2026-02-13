@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
-  <title>С днём Святого Валентина!</title>
+  <title>С Днём Святого Валентина!</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <style>
@@ -14,83 +14,65 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background: linear-gradient(135deg, #ffebee, #f8bbd0);
       color: #c2185b;
-      min-height: 100vh;
-      overflow-x: hidden;
       position: relative;
-      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
     }
 
-    .container {
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 1.5rem;
-      text-align: center;
+    .content {
+      z-index: 10;
+      max-width: 90%;
+      width: 100%;
     }
 
     h1 {
       font-family: 'Dancing Script', cursive;
-      font-size: clamp(2rem, 8vw, 3.2rem);
-      margin: 1.5rem 0;
-      animation: fadeIn 1.2s ease-out;
+      font-size: clamp(1.8rem, 7vw, 2.8rem);
+      margin-bottom: 1.2rem;
+      animation: fadeIn 1s ease-out;
       line-height: 1.2;
     }
 
     .photo {
-      width: 90%;
-      max-width: 320px;
+      width: 80%;
+      max-width: 280px;
       height: auto;
       border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(194, 24, 91, 0.25);
-      margin: 1.2rem auto;
+      box-shadow: 0 8px 20px rgba(194, 24, 91, 0.3);
+      margin: 0.8rem auto;
       display: block;
-      animation: floatIn 1.5s ease-out;
+      animation: floatIn 1.2s ease-out;
     }
 
     .message {
-      font-size: clamp(1rem, 4.5vw, 1.25rem);
+      font-size: clamp(0.95rem, 4.2vw, 1.15rem);
       line-height: 1.5;
-      margin: 1.5rem 0;
+      margin: 1rem 0;
       padding: 0 0.5rem;
-      animation: fadeIn 1.8s ease-out;
-    }
-
-    .gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin: 1.5rem 0;
-    }
-
-    .gallery img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 10px;
-      opacity: 0.9;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-
-    .gallery img:hover,
-    .gallery img:focus {
-      transform: scale(1.12);
-      opacity: 1;
-      box-shadow: 0 5px 10px rgba(194, 24, 91, 0.35);
+      animation: fadeIn 1.4s ease-out;
     }
 
     button {
       background: #e91e63;
       color: white;
       border: none;
-      padding: 12px 26px;
-      font-size: clamp(1rem, 4.8vw, 1.15rem);
+      padding: 11px 24px;
+      font-size: clamp(0.95rem, 4.5vw, 1.1rem);
       border-radius: 50px;
       cursor: pointer;
-      margin: 1.2rem 0;
+      margin-top: 1rem;
       transition: background 0.25s;
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
@@ -99,42 +81,39 @@
     }
 
     button:active {
-      transform: scale(0.98);
-    }
-
-    button:hover {
-      background: #ad1457;
+      transform: scale(0.97);
     }
 
     /* Анимации */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes floatIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.92); }
+      from { opacity: 0; transform: translateY(20px) scale(0.9); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Летающие сердечки */
+    /* Сердечки — теперь по всему viewport */
     .heart {
       position: absolute;
-      font-size: clamp(1rem, 4vw, 1.8rem);
-      opacity: 0.65;
-      z-index: -1;
-      animation: fall linear forwards;
+      top: -30px;
+      font-size: clamp(1rem, 4vw, 1.6rem);
+      opacity: 0.6;
+      z-index: 1;
       pointer-events: none;
+      animation: fall linear forwards;
     }
 
     @keyframes fall {
       to {
-        transform: translateY(110vh) rotate(360deg);
+        transform: translateY(calc(100vh + 50px)) rotate(360deg);
         opacity: 0;
       }
     }
 
-    /* Убираем выделение при долгом тапе */
+    /* Запрет выделения */
     body {
       -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -145,65 +124,53 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <!-- Контент поверх фона -->
+  <div class="content">
     <h1>С Днём Святого Валентина, любимая! ❤️</h1>
-
     <img src="photo1.jpg" alt="Ты и я" class="photo">
-
     <p class="message">
-      Каждый день с тобой — как праздник.<br>
-      Ты делаешь мою жизнь ярче, теплее и счастливее.<br>
-      Спасибо, что ты есть.
+      Ты — моё самое большое счастье.<br>
+      Спасибо, что ты рядом.
     </p>
-
-    <div class="gallery">
-      <img src="photo2.jpg" alt="Момент 1">
-      <img src="photo3.jpg" alt="Момент 2">
-      <img src="photo4.jpg" alt="Момент 3">
-    </div>
-
     <button id="confettiBtn">Нажми для волшебства ✨</button>
   </div>
 
   <script>
-    // Летающие сердечки
+    // Летающие сердечки по всему экрану
     function createHeart() {
       const heart = document.createElement('div');
       heart.innerHTML = '❤️';
       heart.className = 'heart';
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.fontSize = (Math.random() * 24 + 16) + 'px';
-      heart.style.animationDuration = (Math.random() * 6 + 4) + 's';
+      heart.style.fontSize = (Math.random() * 20 + 14) + 'px';
+      heart.style.animationDuration = (Math.random() * 5 + 4) + 's';
       document.body.appendChild(heart);
 
-      setTimeout(() => {
-        heart.remove();
-      }, 10000);
+      // Удаляем после анимации
+      setTimeout(() => heart.remove(), 10000);
     }
 
-    // Запуск сердец каждые 500–800 мс
-    setInterval(createHeart, Math.random() * 300 + 500);
+    // Создаём сердечки каждые 400–700 мс
+    setInterval(createHeart, Math.random() * 300 + 400);
 
-    // Конфетти
+    // Конфетти при нажатии
     document.getElementById('confettiBtn').addEventListener('click', () => {
-      const duration = 3 * 1000;
-      const end = Date.now() + duration;
-
+      const end = Date.now() + 2500;
       const colors = ['#e91e63', '#f48fb1', '#ff4081', '#ec407a'];
 
       (function frame() {
         confetti({
-          particleCount: 3,
+          particleCount: 2,
           angle: 60,
-          spread: 80,
-          origin: { x: 0, y: 0.8 },
+          spread: 55,
+          origin: { x: 0 },
           colors: colors
         });
         confetti({
-          particleCount: 3,
+          particleCount: 2,
           angle: 120,
-          spread: 80,
-          origin: { x: 1, y: 0.8 },
+          spread: 55,
+          origin: { x: 1 },
           colors: colors
         });
 
@@ -212,12 +179,11 @@
     });
 
     // Заглушка для фото
-    document.querySelectorAll('img').forEach(img => {
-      img.onerror = () => {
-        img.src = 'https://via.placeholder.com/320x240/f8bbd0/c2185b?text=❤️';
-        img.style.border = '2px dashed #c2185b';
-      };
-    });
+    document.querySelector('.photo').onerror = () => {
+      const img = document.querySelector('.photo');
+      img.src = 'https://via.placeholder.com/280x210/f8bbd0/c2185b?text=❤️';
+      img.style.border = '2px dashed #c2185b';
+    };
   </script>
 </body>
 </html>
